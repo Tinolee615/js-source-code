@@ -42,6 +42,36 @@ Function.prototype.callFunc = function(target) {
         target[__func] = ownFunc;
     }
 }
+Function.prototype.applyFunc = function(target, argsArray) {
+    if (typeof this !== 'function') {
+        throw new TypeError(this + 'is not a function')
+    }
+
+    if (typeof argsArray === 'undefined' || argsArray === null) {
+        argsArray = [];
+    }
+
+    if (argsArray !== new Object(argsArray)) {
+        throw new TypeError('CreateListFromArrayLike called on non-object')
+    }
+
+    if (typeof target === 'undefined' || target === null) {
+        target = globalThis();
+    }
+
+    target = new Object(target);
+    var __func = '__' + new Date().getTime();
+    var ownFunc = target[__func];
+    var hasOwnFunc = target.hasOwnProperty(__func);
+    target[__func] = this; //this为绑定函数
+    var code = callExecuteExpression(argsArray);
+    var result = new Function(code)(target, __func, argsArray);
+    delete target[__func];
+    if (hasOwnFunc) {
+        target[__func] = ownFunc;
+    }
+    return result;
+}
 //测试
 console.log(Function.prototype.callFunc.length)
 // 1
