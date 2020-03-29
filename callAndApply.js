@@ -64,8 +64,8 @@ Function.prototype.applyFunc = function(target, argsArray) {
     var ownFunc = target[__func];
     var hasOwnFunc = target.hasOwnProperty(__func);
     target[__func] = this; //this为绑定函数
-    var code = callExecuteExpression(argsArray);
-    var result = new Function(code)(target, __func, argsArray);
+    var expression = callExecuteExpression(argsArray);
+    var result = new Function(expression)(target, __func, argsArray);
     delete target[__func];
     if (hasOwnFunc) {
         target[__func] = ownFunc;
