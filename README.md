@@ -3,4 +3,5 @@
 
 [1、原生js实现call、apply方法](https://github.com/Tinolee615/js-source-code/blob/master/callAndApply.js)
 ----[掘金链接](https://juejin.im/post/5e7b89fce51d455c6d2bca99)
+
 [2、promise实现/promiseA+规范](https://github.com/Tinolee615/js-source-code/blob/master/promise.js)
