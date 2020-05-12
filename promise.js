@@ -149,6 +149,8 @@ class MyPromise {
         })
     }
 }
+//安装测试脚本：npm install -g promises-aplus-tests
+//运行测试：promises-aplus-tests promise.js
 MyPromise.defer = MyPromise.deferred = function() {
     let dfd = {};
     dfd.promise = new MyPromise((resolve, reject) => {
